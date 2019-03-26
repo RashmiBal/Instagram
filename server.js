@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
 const app = express();
 
 const db = require('./config/keys').mongoURI;
@@ -7,6 +8,10 @@ const db = require('./config/keys').mongoURI;
 // apis
 const users = require('./routes/api/users');
 const posts = require('./routes/api/posts');
+
+// body parser middleware
+app.use(bodyparser.urlencoded({ extended: false})); // do default url encoding, no custom url encoding
+app.use(bodyparser.json());
 
 // connect to db
 mongoose.connect(db).then(()=> console.log('mongo db connected'))
