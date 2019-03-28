@@ -8,7 +8,7 @@ const Profile = require('../../models/Profile');
 
 // @route POST api/users/register
 // @desc Register user
-//@ @access public
+// @access public
 
 
 module.exports = router;

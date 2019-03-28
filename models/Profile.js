@@ -25,13 +25,13 @@ const ProfileSchema = new Schema({
     type: String
   },
   post: {
-    type: [String]
+    type: Number
   },
   follower: {
-    type: [String]
+    type: Number
   },
   following: {
-    type: [String]
+    type: Number
   },
   date: {
     type: Date,
