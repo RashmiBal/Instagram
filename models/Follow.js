@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// some comment **************************
+// some comment **************************updated$$$$$$$$$$$$$$$$$
 const FollowSchema = new Schema({
     followeruser: {
       type: Schema.Types.ObjectId,
