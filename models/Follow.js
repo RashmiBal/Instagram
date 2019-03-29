@@ -15,3 +15,5 @@ const FollowSchema = new Schema({
         default: Date.now
       },
 });
+
+module.exports = Follow = mongoose.model('follow', FollowSchema);
