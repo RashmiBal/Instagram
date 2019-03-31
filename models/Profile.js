@@ -26,12 +26,19 @@ const ProfileSchema = new Schema({
   post: {
     type: Number
   },
-  follower: {
-    type: Number
-  },
-  following: {
-    type: Number
-  },
+  follower: [{
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+   } ]
+  ,
+  following: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    }
+  }],
   date: {
     type: Date,
     default: Date.now
