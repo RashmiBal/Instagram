@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+
+require('./../../config/passport')(passport); 
 
 // Get all references:
 // Post model
 const Post = require('../../models/Post');
 // Profile model
 const Profile = require('../../models/Profile');
-// Validation
+// Post Validation
 const validatePostInput = require('../../validation/post');
 
 // Quick Test
@@ -29,7 +32,7 @@ router.get('/', (req,res) => {
 // @desc Get post by id
 // @access Public
 router.get('/:id', (req, res)=>{
-    Post.findOne(req.params.id)
+    Post.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.status(404).json({nopostfound: 'No Post found with this ID'})); // Next: pass id in the error string 
 });
@@ -38,7 +41,7 @@ router.get('/:id', (req, res)=>{
 // @desc Create a post
 // @access Private
 router.post('/', 
-passport.authenticate('jwt', {session: false }),
+passport.authenticate('jwt', {session: false}),
 (req, res) => {
     const { errors, isValid} = validatePostInput(req.body);
 
@@ -47,6 +50,7 @@ passport.authenticate('jwt', {session: false }),
     }
 
     const newPost = new Post({
+        media: req.body.media,
         text: req.body.text,
         name: req.body.name,
         avatar: req.body.avatar,
@@ -62,8 +66,8 @@ passport.authenticate('jwt', {session: false }),
 router.delete('/:id', 
 passport.authenticate('jwt', {session:false}),
 (req, res) => {
-    Profile.findOne()
-    .then(profile => {
+    // Profile.findOne()
+    // .then(profile => {
         Post.findById(req.params.id)
         .then(post => {
             if (post.user.toString() !== req.user.id) {
@@ -74,10 +78,10 @@ passport.authenticate('jwt', {session:false}),
                 post.remove()
                 .then(() => res.json({success: true}));
             }
-        })
-        .catch(err => {res.status(404).json({postnotfound: 'No Post found to delete'})});
-    })
-    .catch(err => {res.status(404).json({postnotfound: 'No profile found to delete post'})});
+        });
+    //     .catch(err => {res.status(404).json({postnotfound: 'No Post found to delete'})});
+    // })
+    //.catch(err => {res.status(404).json({postnotfound: 'No profile found to delete post'})});
 });
 
 module.exports = router;

@@ -5,6 +5,7 @@ const isEmpty = require('./is-empty');
 module.exports = function validatePostInput(data) {
     let errors = {};
 
+    data.media = !isEmpty(data.media)?data.media: '';
     data.text = !isEmpty(data.text)?data.text: '';
 
     if(!Validator.isLength(data.text,10,300)){
@@ -13,6 +14,10 @@ module.exports = function validatePostInput(data) {
     
     if (Validator.isEmpty(data.text)){
         errors.text = 'Text cannot be empty';
+    }
+
+    if (Validator.isEmpty(data.media)){
+        errors.text = 'Media cannot be empty';
     }
 
     return {

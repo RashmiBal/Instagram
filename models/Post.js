@@ -6,9 +6,13 @@ const PostSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'users'
     },
-    text: {
+    media: {
       type: String,
       required: true
+    },
+    text: {
+      type: String,
+      required: true // this can be false
     },
     name: {
       type: String
