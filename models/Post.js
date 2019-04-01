@@ -38,13 +38,15 @@ const PostSchema = new Schema({
           type: Schema.Types.ObjectId,
           ref: 'users'
         },
-        post: {
-          type: Schema.Types.ObjectId,
-          ref: 'post'
-        },
         text: {
           type: String,
           required: true
+        },
+        name: {
+          type: String
+        },
+        avatar: {
+          type: String
         },
         date: {
           type: Date,
