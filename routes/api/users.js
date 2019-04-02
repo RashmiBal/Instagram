@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const keys = require('../../config/keys');
-const validateRegisterInput = require('./../../validation/register');
-const validateLoginInput = require('./../../validation/login');
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 router.get('/test', (req, res) => res.json({msg: 'Users api works'}));
 

@@ -20,7 +20,7 @@ mongoose.connect(db).then(()=> console.log('mongo db connected'))
 .catch((err) => console.log(err));
 
 // first route
-app.get('/', (req, res) => {res.send('Hello!')});
+app.get('/', (req, res) => {res.send('Hello world!')});
 
 app.use('/api/users', users);
 app.use('/api/posts', posts);
