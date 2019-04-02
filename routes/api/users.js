@@ -14,9 +14,6 @@ router.get('/test', (req, res) => res.json({msg: 'Users api works'}));
 // Load user model
 const User = require('../../models/User');
 
-// OLD 
-router.get('/test',(req,res) => res.json({msg: 'users api works'}));
-
 // @route POST api/users/register
 // #desc Register user
 // @access public

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+const passport = require('passport');
 const app = express();
 
 const db = require('./config/keys').mongoURI;
@@ -10,6 +11,11 @@ const users = require('./routes/api/users');
 const posts = require('./routes/api/posts');
 const profile = require('./routes/api/profile');
 const follow = require('./routes/api/follow');
+
+// passport middleware
+app.use(passport.initialize());
+//Passport config
+require('./config/passport')(passport);
 
 // body parser middleware
 app.use(bodyparser.urlencoded({ extended: false})); // do default url encoding, no custom url encoding
