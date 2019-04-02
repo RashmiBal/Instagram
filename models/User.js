@@ -4,15 +4,17 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: 'Name is required',
+        trim: true
     },
     email: {
         type: String,
-        required: true
+        unique: 'Email already exists',
+        required: 'Email is required'
     },
     password: {
         type: String,
-        required: true
+        required: 'password is required'
     },
     avatar: {
         type: String,
@@ -22,6 +24,13 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    photo: {
+        data: Buffer,
+        contentType: String,
+        path: String
+    },
+    following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+    followers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
