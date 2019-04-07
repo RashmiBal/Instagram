@@ -1,4 +1,3 @@
-// TODO Uncomment all the Profiles after testing
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -69,7 +68,9 @@ passport.authenticate('jwt', {session: false}),
 router.delete('/:id', 
 passport.authenticate('jwt', {session:false}),
 (req, res) => {
-    // Profile.findOne({user: req.user.id}).then(profile => {
+    Profile.findOne({user: req.user.id})
+    .then(
+        profile => {
         Post.findById(req.params.id)
         .then(post => {
             if (post.user.toString() !== req.user.id) {
@@ -78,12 +79,15 @@ passport.authenticate('jwt', {session:false}),
             } 
             else {
                 post.remove()
-                .then(() => res.json({success: true}));
+                .then(
+                    () => 
+                    {res.json({success: true});}
+                    )
             }
         })
-      .catch(err => {res.status(404).json({postnotfound: 'No Post found to delete'})});
-    // }) // Profile.findOne
-    // .catch(res.status(404).json({profilenotfound: 'Profile not found'}));
+      .catch(
+          err => {res.status(404).json({postnotfound: 'No Post found to delete'})});
+     });
 });
 
 // @route POST api/posts/like/:id
@@ -93,19 +97,20 @@ router.post(
     '/like/:id',
     passport.authenticate('jwt',{session: false}),
     (req, res) => { 
-        // Profile.findOne({user: req.user.id}).then(profile => {
+        Profile.findOne({user: req.user.id})
+        .then(
+            profile => {
             Post.findById(req.params.id)
             .then(post => {
                 if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-                    return res.status(400).json({alreadyliked: 'User already lked post'});
+                    return res.status(400).json({alreadyliked: 'User already liked post'});
                 }
 
                 post.likes.unshift({user: req.user.id});
                 post.save().then(post => res.json(post));
             })
             .catch(err => res.status(404).json({postnotfound: 'No posts found'}));
-        // }) // Profile.findOne
-        // .catch(res.status(404).json({profilenotfound: 'Profile not found'}));
+         }); 
     }
 );
 
@@ -116,7 +121,9 @@ router.post(
     '/unlike/:id',
     passport.authenticate('jwt',{session: false}),
     (req,res) => {
-        // Profile.findOne({user: req.user.id}).then(profile => {
+        Profile.findOne({user: req.user.id})
+        .then(
+            profile => {
             Post.findById(req.params.id)
             .then(post => {
                 if(post.likes.filter(like => like.user.toString() === req.user.id).length === 0){
@@ -132,8 +139,7 @@ router.post(
                 post.save().then(post => res.json(post));
             })
             .catch(err => res.status(400).json({postnotfound: 'Post not found'}));
-        // })
-        // .catch(res.status(404).json({profilenotfound: 'Profile not found'}));
+        });
     }
 );
 
