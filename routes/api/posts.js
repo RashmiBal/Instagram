@@ -39,6 +39,30 @@ router.get('/:id', (req, res)=>{
     .catch(err => res.status(404).json({nopostfound: 'No Post found with this ID'})); // Next: pass id in the error string 
 });
 
+// @route GET api/posts/likes/:id
+// @desc Get count of likes for a post id
+// @access Public
+router.get('/likes/:id', (req, res)=>{
+    Post.findById(req.params.id)
+    .then(
+        post => {
+        var c1 = post.likes.length;
+        res.json({likescount: c1});
+    });
+});
+
+// @route GET api/posts/comments/:id
+// @desc Get count of comments for a post id
+// @access Public
+router.get('/comments/:id', (req, res)=>{
+    Post.findById(req.params.id)
+    .then(
+        post => {
+        var c1 = post.comments.length;
+        res.json({commentscount: c1});
+    });
+});
+
 // @route POST api/posts
 // @desc Create a post
 // @access Private
