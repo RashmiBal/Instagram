@@ -61,4 +61,40 @@ router.get('/following/:id', (req, res)=>{
     });
 });
 
+// @route POST api/follow/unfollow/:id
+// @desc unfollow user given id
+// @access Private
+router.post(
+    '/unfollow/:id',
+    passport.authenticate('jwt',{session: false}),
+    (req,res) => {
+        Profile.findOne({user: req.user.id})
+        .then(
+            p1 => {
+             Profile.findOne({user: req.params.id})
+            .then(p2 => {
+                if(p2.follower.filter(follower => follower.user.toString() === req.user.id).length === 0){
+                    return res.status(400).json({notfollowing: 'You are not following this user'});
+                }
+
+                const removeFollowingIndex = p1.following
+                .map(item => item.user.toString())
+                .indexOf(req.params.id);
+
+                p1.following.splice(removeFollowingIndex, 1);
+
+                p1.save();
+
+                const removeFollowerIndex = p2.follower
+                .map(item => item.user.toString())
+                .indexOf(req.user.id);
+
+                p2.follower.splice(removeFollowerIndex, 1);
+
+                p2.save().then(p2 => res.json(p2));
+            });
+        });
+    }
+);
+
 module.exports = router;
