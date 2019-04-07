@@ -37,4 +37,28 @@ router.post(
 );
 
 
+// @route GET api/follow/followers/:id
+// @desc Get count of followers of user id
+// @access Public
+router.get('/followers/:id', (req, res)=>{
+    Profile.findOne({user: req.params.id})
+    .then(
+        p => {
+        var c1 = p.follower.length;
+        res.json({followercount: c1})
+    });
+});
+
+// @route GET api/follow/following/:id
+// @desc Get count of users following a given user id
+// @access Public
+router.get('/following/:id', (req, res)=>{
+    Profile.findOne({user: req.params.id})
+    .then(
+        p => {
+        var c1 = p.following.length;
+        res.json({followingcount: c1})
+    });
+});
+
 module.exports = router;
