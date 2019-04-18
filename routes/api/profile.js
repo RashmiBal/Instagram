@@ -78,9 +78,9 @@ router.get('/user/:user_id', (req, res) => {
   });
 
   // @route   POST api/profile
-// @desc    Create or edit user profile
-// @access  Private
-router.post(
+  // @desc    Create or edit user profile
+  // @access  Private
+ router.post(
     '/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -147,22 +147,4 @@ router.delete(
     }
   );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
+module.exports = router; 
