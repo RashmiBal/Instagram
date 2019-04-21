@@ -43,7 +43,7 @@ import { Link } from 'react-router-dom';
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
-                <i class="fas fa-home"></i>
+                  <i class="fas fa-home"></i>
                 </Link>
               </li>
             </ul>
