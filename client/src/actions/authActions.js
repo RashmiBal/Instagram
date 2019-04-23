@@ -1,4 +1,4 @@
-import {GET_ERRORS, SET_CURRENT_USER} from './types';
+import {GET_ERRORS} from './types';
 import axios from 'axios';
 
 
