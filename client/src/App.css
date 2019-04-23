@@ -21,6 +21,19 @@ img {
     margin-top: -24px;
     margin-bottom: -50px;
   }
+
+  .login{
+    position: relative;
+    background: url('../src/img/Instagrambackground.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+  }
+
+
+
      
   .latest-profiles-img {
     width: 40px;

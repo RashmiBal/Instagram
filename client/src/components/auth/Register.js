@@ -110,10 +110,10 @@ Register.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({  //when data back from store we care about:
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(mapStateToProps, { registerUser })(withRouter(Register)); //connect component with a redux store and read the data
 
