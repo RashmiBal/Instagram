@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
 
  class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Login page</h1>
+        <form>
+          <input type="text" placeholder="email" />
+          <input type="password" placeholder="password" />
+          <input className="btn btn-lg btn-success" type="button" value="button" />
+        </form>
       </div>
     )
   }

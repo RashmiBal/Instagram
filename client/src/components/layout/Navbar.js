@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
  class Navbar extends Component {
   render() {
@@ -43,7 +44,7 @@ import { Link } from 'react-router-dom';
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/">
-                  <i class="fas fa-home"></i>
+                  <i className="fas fa-home"></i>
                 </Link>
               </li>
             </ul>
