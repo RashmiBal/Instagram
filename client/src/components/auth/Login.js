@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+// import Dashboard from "./components/dashboard/Dashboard";
 
 class Login extends Component {
   constructor() {
@@ -22,19 +23,19 @@ class Login extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/profile');
+      this.props.history.push('/dashboard');
       //console.log('User already exist');
     }
   }
 
   componentWillReceiveProps(nextProps) {
      if (nextProps.auth.isAuthenticated) {
-       this.props.history.push('/profile');
+       this.props.history.push('/dashboard');
      }
 
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
+    // if (nextProps.errors) {
+    //   this.setState({ errors: nextProps.errors });
+    // }
   }
 
   onSubmit(e){
