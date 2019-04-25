@@ -53,16 +53,19 @@ class Register extends Component {
 
   render() {
     const { errors } = this.state;
+    var style = {
+      'margin-bottom': '0.10rem',
+    };
     return (
       <div className="register">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">
+              <h5 className="display-4 text-center">Sign Up</h5>
+              <p className="text-center">
                 Create your Instagram account
               </p>
-              <form noValidate onSubmit={this.onSubmit}>
+              <form noValidate onSubmit={this.onSubmit} style={style}>
                 <TextFieldGroup
                   placeholder="Name"
                   name="name"
@@ -94,7 +97,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-dark btn-block mt-4" />
+                <input type="submit" className="btn btn-dark btn-block" />
               </form>
             </div>
           </div>

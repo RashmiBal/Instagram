@@ -13,8 +13,11 @@ const TextFieldGroup = ({
   onChange,
   disabled
 }) => {
+  var style = {
+    'margin-bottom': '0.10rem',
+  };
   return (
-    <div className="form-group">
+    <div className="form-group" style={style}>
       <input
         type={type}
         className={classnames('form-control form-control-lg', {
@@ -27,7 +30,7 @@ const TextFieldGroup = ({
         disabled={disabled}
       />
       {info && <small className="form-text text-muted">{info}</small>}
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && <span className="invalid-feedback">{error}</span>}
     </div>
   );
 };

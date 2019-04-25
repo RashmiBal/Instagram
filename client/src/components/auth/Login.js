@@ -33,9 +33,9 @@ class Login extends Component {
        this.props.history.push('/dashboard');
      }
 
-    // if (nextProps.errors) {
-    //   this.setState({ errors: nextProps.errors });
-    // }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onSubmit(e){
@@ -56,8 +56,8 @@ class Login extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
+              <h2 className="display-4 text-center">Log In</h2>
+              <p className="text-center">
                 Sign in to your Instagram account
               </p>
               <form onSubmit={this.onSubmit}>
