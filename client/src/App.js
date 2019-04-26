@@ -14,6 +14,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
 import EditProfile from "./components/edit-profile/EditProfile";
+import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
 import "./App.css";
 
@@ -33,6 +34,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/feed" component={Posts} />
               </Switch>
             </div>
             <Footer />
