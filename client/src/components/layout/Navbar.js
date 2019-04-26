@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 
  class Navbar extends Component {
   render() {
-    const isAuthenticated = false; // TODO: read value from props
+    const isAuthenticated = true; // TODO: read value from props
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+          <Link className="nav-link" to="/feed">
+            Post Feed
+          </Link>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/">
             Logout
