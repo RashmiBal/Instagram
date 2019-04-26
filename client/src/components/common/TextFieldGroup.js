@@ -11,10 +11,11 @@ const TextFieldGroup = ({
   info,
   type,
   onChange,
-  disabled
+  disabled,
+  autoComplete
 }) => {
   var style = {
-    'margin-bottom': '0.10rem',
+    'marginBottom': '0.10rem',
   };
   return (
     <div className="form-group" style={style}>
@@ -28,6 +29,7 @@ const TextFieldGroup = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        autoComplete={autoComplete}
       />
       {info && <small className="form-text text-muted">{info}</small>}
       {error && <span className="invalid-feedback">{error}</span>}
