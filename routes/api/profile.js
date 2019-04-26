@@ -94,6 +94,7 @@ router.get('/user/:user_id', (req, res) => {
       // Get fields
       const profileFields = {};
       profileFields.user = req.user.id;
+      profileFields.username = req.user.name;
       if (req.body.handle) profileFields.handle = req.body.handle;
       if (req.body.title) profileFields.title = req.body.title;
       if (req.body.website) profileFields.website = req.body.website;

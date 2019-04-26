@@ -11,6 +11,9 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
+  username: {
+    type: String
+  },
   title: {
     type: String
   },
@@ -26,19 +29,25 @@ const ProfileSchema = new Schema({
   post: {
     type: Number
   },
-  follower: [{
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-      }
-   } ]
-  ,
-  following: [{
+follower: [{
     user: {
       type: Schema.Types.ObjectId,
       ref: 'users'
+    },
+    username:{
+      type: String
     }
-  }],
+ } ]
+,
+following: [{
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
+  username:{
+    type: String
+  }
+}],
   date: {
     type: Date,
     default: Date.now

@@ -3,6 +3,8 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Followers from "./Followers";
+import Followings from "./Followings";
 
 class Profile extends Component {
     componentDidMount() {
@@ -36,7 +38,15 @@ class Profile extends Component {
             <Link to="/edit-profile" className="btn btn-light">
                 <i className="fas fa-user-circle text-info mr-1" /> Edit Profile
             </Link>
+            <Link className="btn btn-light">
+                Followers {' '} {profile.follower.length}
+            </Link>
+            <Link className="btn btn-light">
+                Following {' '} {profile.following.length}
+            </Link>
             </div>
+            <Followers followers={profile.follower} />
+            <Followings followings={profile.following} />
 
           <div style={{ marginBottom: '60px' }} />
           <button

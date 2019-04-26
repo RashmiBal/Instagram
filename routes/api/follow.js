@@ -26,10 +26,10 @@ router.post(
                     return res.status(400).json({alreadyfollows: 'Already follows'});
                 }
 
-                p1.following.unshift({user: req.params.id});
+                p1.following.unshift({user: req.params.id, username: p2.username});
                 p1.save();
 
-                p2.follower.unshift({user: req.user.id});
+                p2.follower.unshift({user: req.user.id, username: p1.username});
                 p2.save().then(p2 => res.json(p2));
             });
          }); 
@@ -82,7 +82,7 @@ router.post(
                 .indexOf(req.params.id);
 
                 p1.following.splice(removeFollowingIndex, 1);
-
+              
                 p1.save();
 
                 const removeFollowerIndex = p2.follower
