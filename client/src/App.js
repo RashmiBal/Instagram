@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Profiles from './components/profiles/Profiles';
 import Profile from "./components/profile/Profile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import Posts from "./components/posts/Posts";
@@ -29,6 +30,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
               <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
               </Switch>

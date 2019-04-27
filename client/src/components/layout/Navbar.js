@@ -51,6 +51,12 @@ import { Link } from 'react-router-dom';
                   <i className="fas fa-home"></i>
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/profiles">
+                  {' '}
+                  Users
+                </Link>
+              </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
