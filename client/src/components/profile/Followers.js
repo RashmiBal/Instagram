@@ -7,9 +7,10 @@ export default class Followers extends Component {
     let f = followers.map(follower => <FollowItem key={follower._id} followuser={follower.user} fusername={follower.username}/>);
     return (
       <div>
-        Followers:
-        <p>{f}</p>
+        <h4 className="text-muted">Followers:</h4>
+        <div className="card-columns">{f}</div>
       </div>
     )
   }
 }
+

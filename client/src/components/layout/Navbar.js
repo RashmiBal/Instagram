@@ -66,6 +66,12 @@ import { clearCurrentProfile } from '../../actions/profileActions';
                   <i className="fas fa-home"></i>
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/profiles">
+                  {' '}
+                  Users
+                </Link>
+              </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
