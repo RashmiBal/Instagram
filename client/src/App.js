@@ -18,6 +18,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import Posts from "./components/posts/Posts";
 import PrivateRoute from "./components/common/PrivateRoute";
 import "./App.css";
+import Post from "./components/post/Post";
 
 class App extends Component {
   render() {
@@ -35,10 +36,17 @@ class App extends Component {
                 <PrivateRoute exact path="/profile" component={Profile} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/feed" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id" component={Post} />
               </Switch>
             </div>
             <Footer />
