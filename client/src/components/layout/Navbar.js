@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
+import { clearCurrentProfile } from '../../actions/profileActions';
 
  class Navbar extends Component {
+  onLogoutClick(e) {
+    e.preventDefault();
+    this.props.clearCurrentProfile();
+    this.props.logoutUser();
+  }
+
   render() {
-    const isAuthenticated = true; // TODO: read value from props
+    const { isAuthenticated} = this.props.auth;
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
@@ -12,10 +22,15 @@ import { Link } from 'react-router-dom';
             Post Feed
           </Link>
         </li>
+        
         <li className="nav-item">
-          <Link className="nav-link" to="/">
+          
+        <a  href=""
+            onClick={this.onLogoutClick.bind(this)}
+            className="nav-link"
+          >
             Logout
-          </Link>
+          </a>
         </li>
         </ul>);
 
@@ -60,4 +75,15 @@ import { Link } from 'react-router-dom';
   }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
+  Navbar
+);
