@@ -9,7 +9,6 @@ class PostFeed extends Component {
     //return posts.map(post => <PostItem key={post._id} post={post} />);
     return (
         <div>
-          PostFeed
           <p>{c}</p>
         </div>
       )

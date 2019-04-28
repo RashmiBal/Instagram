@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getPost } from "../../actions/postActions"; import PostItem from '../posts/PostItem';
+import { getPost } from "../../actions/postActions";
+import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
+import CommentFeed from './CommentFeed';
 
  class Post extends Component {
    componentDidMount() {
@@ -10,17 +13,20 @@ import { getPost } from "../../actions/postActions"; import PostItem from '../po
    }
 
    render() {
-        const {post} = this.props.post;
+       const {post} = this.props.post;
+
        let postContent;
-    //    if (post === null || Object.keys(post).length === 0) {
-         postContent = <PostItem post={post} showActions={false} />;//<h1>Loading...</h1>;
-    //    } else {
-    //      postContent = (
-    //        <div>
-    //          <PostItem post={post} showActions={false} />
-    //        </div>
-    //      );
-    //    }
+       if (post === null || post  === undefined || Object.keys(post).length === 0) {
+         postContent = <h1>Loading...</h1>;
+       } else {
+         postContent = (
+           <div>
+             <PostItem post={post} showActions={false} />
+             <CommentForm postId={post._id} />
+             <CommentFeed postId={post._id} comments={post.comments} />
+           </div>
+         );
+       }
      return (
        <div className="post">
          <div className="container">
@@ -49,4 +55,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPost }
-)(Post);
+)(Post); 

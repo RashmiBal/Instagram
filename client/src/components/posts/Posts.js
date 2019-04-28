@@ -14,15 +14,11 @@ class Posts extends Component {
 
   render() {
     const { posts} = this.props.post;
-    //let postContent;
-
-    //postContent = <PostFeed posts={posts} />;
     return (
         <div className="feed">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-            posts
               <PostForm />
               <PostFeed posts={posts} /> 
             </div>

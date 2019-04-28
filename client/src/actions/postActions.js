@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   ADD_POST,
   GET_ERRORS,
-  //CLEAR_ERRORS,
+  CLEAR_ERRORS,
   GET_POSTS,
   GET_POST,
   //POST_LOADING,
@@ -12,7 +12,7 @@ import {
 
 // Add Post
 export const addPost = postData => dispatch => {
-  //dispatch(clearErrors());
+  dispatch(clearErrors());
   axios
     .post('/api/posts', postData)
     .then(res =>
@@ -49,7 +49,7 @@ export const getPosts = () => dispatch => {
       );
   };
 
-  // Delete Post
+// Delete Post
 export const deletePost = id => dispatch => {
   axios
     .delete(`/api/posts/${id}`)
@@ -66,6 +66,7 @@ export const deletePost = id => dispatch => {
       })
     );
 };
+
 // Add Like
 export const addLike = id => dispatch => {
   axios
@@ -78,6 +79,7 @@ export const addLike = id => dispatch => {
       })
     );
 };
+
 // Remove Like
 export const removeLike = id => dispatch => {
   axios
@@ -90,6 +92,7 @@ export const removeLike = id => dispatch => {
       })
     );
 };
+
 // Get Post
 export const getPost = id => dispatch => {
   // dispatch(setPostLoading());
@@ -108,9 +111,47 @@ export const getPost = id => dispatch => {
       })
     );
 };
-  // Clear errors
-// export const clearErrors = () => {
-//     return {
-//       type: CLEAR_ERRORS
-//     };
-//   };
+
+// Add Comment
+export const addComment = (postId, commentData) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentData)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Comment
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res =>
+      dispatch({
+        type: GET_POST,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Clear errors
+export const clearErrors = () => {
+    return {
+      type: CLEAR_ERRORS
+    };
+  };
