@@ -74,6 +74,7 @@ passport.authenticate('jwt', {session: false}),
     if (!isValid) {
         return res.status(400).json(errors);
     }
+    
 
     const newPost = new Post({
         media: req.body.media,
@@ -82,8 +83,10 @@ passport.authenticate('jwt', {session: false}),
         avatar: req.body.avatar,
         user: req.user.id
     });
-    
+    if(newPost!=undefined && newPost!=null)
+    {
     newPost.save().then(post => res.json(post));
+    }
 });
 
 // @route DELETE api/posts/:id

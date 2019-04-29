@@ -6,13 +6,17 @@ const PostSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'users'
     },
+    username:{
+      type: String,
+     // required: true
+    },
     media: {
       type: String,
-      required: true
+     // required: true
     },
     text: {
       type: String,
-      required: true // this can be false
+      //required: true // this can be false
     },
     name: {
       type: String
@@ -40,7 +44,7 @@ const PostSchema = new Schema({
         },
         text: {
           type: String,
-          required: true
+         // required: true
         },
         name: {
           type: String
