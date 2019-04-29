@@ -30,7 +30,7 @@ router.post(
                 p1.save();
 
                 p2.follower.unshift({user: req.user.id, username: p1.username});
-                p2.save().then(p2 => res.json(p2));
+                p2.save().then(p2 => res.json(p1));
             });
          }); 
     }
@@ -91,7 +91,7 @@ router.post(
 
                 p2.follower.splice(removeFollowerIndex, 1);
 
-                p2.save().then(p2 => res.json(p2));
+                p2.save().then(p2 => res.json(p1));
             });
         });
     }
