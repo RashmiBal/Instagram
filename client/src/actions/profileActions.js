@@ -28,11 +28,12 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
-// Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
+// Get profile by userid (note: this was by handle)
+// API path looks like api/profile/user/:user_id
+export const getProfileByUserId = userid => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/handle/${handle}`)
+    .get(`/api/profile/user/${userid}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,

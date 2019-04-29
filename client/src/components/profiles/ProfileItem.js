@@ -6,23 +6,25 @@ class ProfileItem extends Component {
   render() {
     const { profile } = this.props;
     return (
-    //   <div>
-    //     Profile Item
-    //   </div>
     <div className="card card-body bg-light mb-3">
         <div className="row">
           <div className="col-2">
             <img src={profile.user.avatar} alt="" className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h4 className="text-muted">{profile.username}</h4>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-info">
+          <h4 className="text-muted">{profile.username}</h4>
+            <Link to={`/viewprofile/${profile.user._id}`} className="btn btn-info">
               View Profile
+            </Link>
+            {' '}
+            {/* TODO: work on Follow UnFollow pending */}
+            <Link className="btn btn-primary"> 
+              Follow/UnFollow
             </Link>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
