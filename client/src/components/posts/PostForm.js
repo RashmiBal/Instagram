@@ -3,78 +3,98 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
+import ImageUploader from "react-images-upload";
 
  class PostForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      media: '',
-      text: '',
-      errors: {}
-    };
+   constructor(props) {
+     super(props);
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-  componentWillReceiveProps(newProps) {
-    if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
-    }
-  }
-  onSubmit(e) {
-    e.preventDefault();
+     this.state = {
+       media: "",
+       text: "",
+       errors: {},
+       pictures: []
+     };
 
-    const { user } = this.props.auth;
+     this.onChange = this.onChange.bind(this);
+     this.onSubmit = this.onSubmit.bind(this);
+     this.onDrop = this.onDrop.bind(this);
+   }
+   componentWillReceiveProps(newProps) {
+     if (newProps.errors) {
+       this.setState({ errors: newProps.errors });
+     }
+   }
+   onSubmit(e) {
+     e.preventDefault();
 
-    const newPost = {
-      media: this.state.media,
-      text: this.state.text,
-      name: user.name,
-      avatar: user.avatar
-    };
+     const { user } = this.props.auth;
 
-    this.props.addPost(newPost);
-    this.setState({ text: '', media: '' });
-  }
+     const newPost = {
+       media: this.state.media,
+       text: this.state.text,
+       picture:this.state.pictures,
+       name: user.name,
+       avatar: user.avatar
+     };
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+     this.props.addPost(newPost);
+     this.setState({ text: "", media: "" });
+   }
 
-  render() {
-    const {errors} = this.state;
-    return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Something...</div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-              <TextAreaFieldGroup
-                  placeholder="Add media"
-                  name="media"
-                  value={this.state.media}
-                  onChange={this.onChange}
-                  error={errors.text}
-                />
-                <TextAreaFieldGroup
-                  placeholder="Create a post"
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.onChange}
-                  error={errors.text}
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+   onChange(e) {
+     this.setState({ [e.target.name]: e.target.value });
+   }
+
+   onDrop(picture) {
+     this.setState({
+       pictures: this.state.pictures.concat(picture)
+     });
+   }
+   render() {
+     const { errors } = this.state;
+     return (
+       <div className="post-form mb-3">
+         <div className="card card-info">
+           <div className="card-header bg-info text-white">
+             Say Something...
+           </div>
+           <div className="card-body">
+             <form onSubmit={this.onSubmit}>
+               <div className="form-group">
+                 <TextAreaFieldGroup
+                   placeholder="Add media"
+                   name="media"
+                   value={this.state.picture}
+                   onChange={this.onChange}
+                   error={errors.text}
+                 />
+                 <ImageUploader
+                   withIcon={true}
+                   buttonText="upload images"
+                   onChange={this.onDrop}
+                   imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                   maxFileSize={5242880}
+                 />
+                 <TextAreaFieldGroup
+                   placeholder="Create a post"
+                   name="text"
+                   value={this.state.text}
+                   onChange={this.onChange}
+                   error={errors.text}
+                 />
+               </div>
+
+               <button type="submit" className="btn btn-dark">
+                 Submit
+               </button>
+             </form>
+           </div>
+         </div>
+       </div>
+     );
+   }
+ }
 PostForm.propTypes = {
   addPost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,

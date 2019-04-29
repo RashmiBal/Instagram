@@ -44,8 +44,9 @@ class PostItem extends Component {
       // </div>
       <div className="card card-body mb-3">
         <div className="row">
-          <div className="col-md-2">            
+          <div className="col-md-2">
             <p className="text-center">{post.name}</p>
+            <p className="text-center">{post.picture}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
@@ -57,11 +58,13 @@ class PostItem extends Component {
                   className="btn btn-light mr-1"
                 >
                   <i
-                    className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
+                    className={classnames("fas fa-thumbs-up", {
+                      "text-info": this.findUserLike(post.likes)
                     })}
                   />
-                  <span className="badge badge-light">{post.likes.length}</span>
+                  <span className="badge badge-light">
+                    {post.likes.length}
+                  </span>
                 </button>
                 <button
                   onClick={this.onUnlikeClick.bind(this, post._id)}
@@ -70,7 +73,10 @@ class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
+                <Link
+                  to={`/post/${post._id}`}
+                  className="btn btn-info mr-1"
+                >
                   Comments
                 </Link>
                 {post.user === auth.user.id ? (
