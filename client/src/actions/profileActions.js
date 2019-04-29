@@ -28,11 +28,12 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
-// Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
+// Get profile by userid (note: this was by handle)
+// API path looks like api/profile/user/:user_id
+export const getProfileByUserId = userid => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/handle/${handle}`)
+    .get(`/api/profile/user/${userid}`)
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -51,7 +52,7 @@ export const getProfileByHandle = handle => dispatch => {
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/dashboard'))
+    .then(res => history.push('/profile'))// TODO it  ****
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -99,6 +100,42 @@ export const deleteAccount = () => dispatch => {
         })
       );
   }
+};
+
+// Follow User
+export const followUser = id => dispatch => {
+  axios
+    .post(`/api/follow/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Unfollow User -- api/follow/unfollow/:id
+export const unfollowUser = id => dispatch => {
+  axios
+    .post(`/api/follow/unfollow/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
 // Profile loading

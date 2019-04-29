@@ -17,22 +17,26 @@ import { clearCurrentProfile } from '../../actions/profileActions';
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
+        <li className="nav-item">
+          <Link className="nav-link" to="/profiles">
+            {" "}
+            Users
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/feed">
             Post Feed
           </Link>
         </li>
-        
         <li className="nav-item">
-          
-        <a  href=""
-            onClick={this.onLogoutClick.bind(this)}
-            className="nav-link"
-          >
+        <Link className="nav-link"
+            onClick={this.onLogoutClick.bind(this)}>
             Logout
-          </a>
+          </Link>
+
         </li>
-        </ul>);
+      </ul>
+    );
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
@@ -64,12 +68,6 @@ import { clearCurrentProfile } from '../../actions/profileActions';
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   <i className="fas fa-home"></i>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/profiles">
-                  {' '}
-                  Users
                 </Link>
               </li>
             </ul>
