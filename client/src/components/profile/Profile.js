@@ -85,9 +85,12 @@ class Profile extends Component {
     } else {
       dashboardContent = (
         <div>
-          <p className="lead text-muted">Welcome</p>
+          <p className="lead text-muted">Welcome {user.name}</p>
           <p>You have not yet setup a profile, please add some info</p>
-          Create Profile link
+          <br/>
+          <Link to="/create-profile" className="btn btn-light">
+              <i className="fas fa-user-circle text-info mr-1" /> Create Profile
+          </Link>
         </div>
       );
     }
