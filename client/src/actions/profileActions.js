@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   GET_PROFILE,
+  GET_VIEWPROFILE,
   GET_PROFILES,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
@@ -36,13 +37,13 @@ export const getProfileByUserId = userid => dispatch => {
     .get(`/api/profile/user/${userid}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_VIEWPROFILE,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_VIEWPROFILE,
         payload: null
       })
     );

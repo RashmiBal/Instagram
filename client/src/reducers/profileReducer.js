@@ -1,5 +1,6 @@
 import {
     GET_PROFILE,
+    GET_VIEWPROFILE,
     GET_PROFILES,
     PROFILE_LOADING,
     CLEAR_CURRENT_PROFILE
@@ -22,6 +23,12 @@ import {
         return {
           ...state,
           profile: action.payload,
+          loading: false
+        };
+        case GET_VIEWPROFILE:
+        return {
+          ...state,
+          viewprofile: action.payload,
           loading: false
         };
       case GET_PROFILES:

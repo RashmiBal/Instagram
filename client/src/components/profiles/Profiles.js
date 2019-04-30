@@ -11,10 +11,15 @@ class Profiles extends Component {
 
   render() {
     const { profiles } = this.props.profile;
+    const { profile } = this.props.profile;
+
+    let currentUserID = profile ? profile.user._id: '';
     let profileItems;
+    let profilesToShow;
     if (profiles && profiles.length > 0) {
-        profileItems = profiles.map(profile => (
-          <ProfileItem key={profile._id} profile={profile} />
+      profilesToShow = profiles.filter(profile => profile.user._id !== currentUserID) // Exclude current user from being shown in the users list
+        profileItems = profilesToShow.map(profile => (
+          <ProfileItem key={profile._id} viewprofile={profile} />
         ));
       } else {
         profileItems = <h3 className="font-italic text-warning">No profiles found...</h3>;

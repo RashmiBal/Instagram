@@ -13,10 +13,14 @@ class ViewProfile extends Component {
       }
 
   render() {
-    const { profile } = this.props.profile;
+    // const { profile } = this.props.profile;
+    const { profiles } = this.props.profile;
+
+    let viewprofile1 = profiles.find(profile => profile.user._id === this.props.match.params.userid);
+  
     let profileContent;
 
-    if (profile === null) {
+    if (viewprofile1 === null) {
       profileContent = "Loading...";
     } else {
       profileContent = (
@@ -29,15 +33,18 @@ class ViewProfile extends Component {
             </div>
             <div className="col-md-6" />
           </div>
-          <p className="display-4 text-muted">{profile.username}</p>
+          <button>Follow-UnFollow</button>
+          
+          <hr />
+          <p className="display-4 text-muted">{viewprofile1.username}</p>
           <div>
-            Title: {profile.title} <br />
-            WebSite: {profile.website} <br />
-            Bio: {profile.bio}
+            Title: {viewprofile1.title} <br />
+            WebSite: {viewprofile1.website} <br />
+            Bio: {viewprofile1.bio}
           </div>
           <hr />
-          Followers: {profile.follower.length} <br />
-          Following: {profile.following.length} <br />
+          Followers: {viewprofile1.follower.length} <br />
+          Following: {viewprofile1.following.length} <br />
           <hr />
         </div>
       ); 
@@ -57,11 +64,12 @@ class ViewProfile extends Component {
 
 ViewProfile.propTypes = {
   getProfileByUserId: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired
   };
   
   const mapStateToProps = state => ({
-    profile: state.profile
+     profile: state.profile,
+     profiles: state.profiles
   });
 
  export default connect(mapStateToProps, { getProfileByUserId })(ViewProfile);
