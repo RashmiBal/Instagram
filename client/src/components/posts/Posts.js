@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import PostForm from "./PostForm";
 import PostFeed from "./PostFeed";
 import { getPosts } from '../../actions/postActions';
@@ -18,7 +19,12 @@ class Posts extends Component {
         <div className="feed">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+          <div className="col-md-2">
+              <Link to="/profile" className="btn btn-light mb-3 float-left">
+                Back To My Profile
+              </Link>
+            </div>
+            <div className="col-md-10">
               <PostForm />
               <PostFeed posts={posts} /> 
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profileActions';
@@ -28,7 +29,12 @@ class Profiles extends Component {
         <div className="profiles">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+          <div className="col-md-2">
+              <Link to="/profile" className="btn btn-light mb-3 float-left">
+                Back To My Profile
+              </Link>
+            </div>
+            <div className="col-md-10">
               <h3 className="display-4 text-center">All Users</h3>
               <p className="lead text-center">
                 Browse and connect with others

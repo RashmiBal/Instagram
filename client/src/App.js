@@ -33,7 +33,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Switch>
-                <Route exact path="/profiles" component={Profiles} />
+                <PrivateRoute exact path="/profiles" component={Profiles} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/profile" component={Profile} />
