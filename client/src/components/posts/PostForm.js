@@ -53,6 +53,7 @@ import { addPost } from '../../actions/postActions';
            <div className="card-header bg-info text-white">
              Say Something...
            </div>
+           <img className="card-img-bottom img-fluid" src={this.state.media} width="100" height="100" alt=""></img>
            <div className="card-body">
              <form onSubmit={this.onSubmit}>
                <div className="form-group">

@@ -31,21 +31,11 @@ class PostItem extends Component {
   render() {
     const { post, auth, showActions } = this.props;
     return (
-      // <div>
-      //   PostItem
-      //   <p>{post.text}</p>
-      //   <button
-      //     onClick={this.onDeleteClick.bind(this, post._id)}
-      //     type="button"
-      //     className="btn btn-danger mr-1"
-      //   >
-      //     <i className="fas fa-times" />
-      //   </button>
-      // </div>
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <p className="text-center">{post.name}</p>
+            <img className="card-img-bottom img-fluid" src={post.media} width="100" height="100" alt=""></img>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
