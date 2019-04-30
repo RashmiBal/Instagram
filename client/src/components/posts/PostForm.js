@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
-import ImageUploader from "react-images-upload";
 
  class PostForm extends Component {
    constructor(props) {
@@ -12,13 +11,12 @@ import ImageUploader from "react-images-upload";
      this.state = {
        media: "",
        text: "",
-       errors: {},
-       pictures: []
+       errors: {}
      };
 
      this.onChange = this.onChange.bind(this);
      this.onSubmit = this.onSubmit.bind(this);
-     this.onDrop = this.onDrop.bind(this);
+
    }
    componentWillReceiveProps(newProps) {
      if (newProps.errors) {
@@ -46,11 +44,7 @@ import ImageUploader from "react-images-upload";
      this.setState({ [e.target.name]: e.target.value });
    }
 
-   onDrop(picture) {
-     this.setState({
-       pictures: this.state.pictures.concat(picture)
-     });
-   }
+ 
    render() {
      const { errors } = this.state;
      return (
@@ -65,16 +59,9 @@ import ImageUploader from "react-images-upload";
                  <TextAreaFieldGroup
                    placeholder="Add media"
                    name="media"
-                   value={this.state.picture}
+                   value={this.state.media}
                    onChange={this.onChange}
                    error={errors.text}
-                 />
-                 <ImageUploader
-                   withIcon={true}
-                   buttonText="upload images"
-                   onChange={this.onDrop}
-                   imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                   maxFileSize={5242880}
                  />
                  <TextAreaFieldGroup
                    placeholder="Create a post"

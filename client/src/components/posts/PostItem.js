@@ -46,7 +46,6 @@ class PostItem extends Component {
         <div className="row">
           <div className="col-md-2">
             <p className="text-center">{post.name}</p>
-            <p className="text-center">{post.picture}</p>
           </div>
           <div className="col-md-10">
             <p className="lead">{post.text}</p>
