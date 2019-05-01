@@ -47,6 +47,7 @@ class Profile extends Component {
                   Followers {profile.follower.length}
                 </a>
               </li>
+              {' '}
               <li>
                 <a
                   href="#following"
@@ -56,6 +57,7 @@ class Profile extends Component {
                   Following {profile.following.length}
                 </a>
               </li>
+              {' '}
               <li>
                 <Link to="/edit-profile" className="btn btn-light">
                   <i className="fas fa-user-circle text-info mr-1" /> Edit
@@ -85,7 +87,7 @@ class Profile extends Component {
     } else {
       dashboardContent = (
         <div>
-          <p className="lead text-muted">Welcome {user.name}</p>
+          <p className="display-4 text-muted">Welcome {user.name}</p>
           <p>You have not yet setup a profile, please add some info</p>
           <br/>
           <Link to="/create-profile" className="btn btn-light">
